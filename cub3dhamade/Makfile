@@ -1,0 +1,37 @@
+NAME = cub3D
+
+FILE = 	cub3d.c \
+		./src/gnl.c \
+		cheack_map.c \
+		read_map.c \
+		cheack_map_utils.c \
+		ft_findintersection.c \
+		./src/libftt/libft.a \
+		./src/printff/libftprintf.a \
+		raycasting.c \
+		cub3d_utils_1.c \
+		cub3d_utils_2.c \
+		draw_sprite.c \
+		bitmap.c \
+
+FLAG = -Wall -Wextra -Werror
+
+MLX = -lmlx -framework OpenGl -framework AppKit
+
+all: $(NAME)
+
+$(NAME) :
+	@make -C ./src/libftt/ re
+	@make -C ./src/printff/ re
+	@gcc $(FLAG) -I /usr/local/include $(FILE) \
+	-L /usr/local/include $(MLX) -g -o $(NAME)
+ 
+clean:
+	@rm -f *.o ./src/printff/*.o ./src/libftt/*.o
+
+fclean: clean
+	@echo "Clean..."
+	@rm -f $(NAME)
+
+re: fclean all
+
